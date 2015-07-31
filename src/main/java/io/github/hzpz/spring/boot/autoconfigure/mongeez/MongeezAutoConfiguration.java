@@ -78,7 +78,6 @@ public class MongeezAutoConfiguration {
         }
 
         @Bean(initMethod = "process")
-        @ConfigurationProperties(prefix = "mongeez")
         public Mongeez mongeez(MongoProperties mongoProperties, Mongo mongo) {
             Mongeez mongeez = new Mongeez();
             mongeez.setMongo(mongo);
