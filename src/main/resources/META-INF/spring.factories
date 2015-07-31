@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.hzpz.spring.boot.autoconfigure.mongeez.MongeezAutoConfiguration
