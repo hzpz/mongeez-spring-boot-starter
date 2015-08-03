@@ -67,7 +67,6 @@ public class MongeezAutoConfiguration {
         @Autowired
         private MongeezProperties mongeezProperties = new MongeezProperties();
 
-        @Autowired
         private ResourceLoader resourceLoader = new DefaultResourceLoader();
 
         @PostConstruct
@@ -117,7 +116,7 @@ public class MongeezAutoConfiguration {
 
         @Bean
         public BeanFactoryPostProcessor mongoDbFactoryDependsOnPostProcessor() {
-            return new MongoDbFactoryDependsOnPostProcessor("mongeezRunner");
+            return new MongoDbFactoryDependsOnPostProcessor("mongeez");
         }
 
     }
