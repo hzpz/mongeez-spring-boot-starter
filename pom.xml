@@ -4,7 +4,7 @@
 
     <groupId>io.github.hzpz.spring.boot</groupId>
     <artifactId>spring-boot-autoconfigure-mongeez</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>Spring Boot AutoConfigure for Mongeez</description>
     <url>http://github.com/hzpz/spring-boot-autoconfigure-mongeez</url>
@@ -31,7 +31,7 @@
         <connection>scm:git:https://github.com/hzpz/spring-boot-autoconfigure-mongeez.git</connection>
         <developerConnection>scm:git:https://github.com/hzpz/spring-boot-autoconfigure-mongeez.git</developerConnection>
         <url>http://github.com/hzpz/spring-boot-autoconfigure-mongeez</url>
-      <tag>spring-boot-autoconfigure-mongeez-1.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <developers>
