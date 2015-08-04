@@ -3,6 +3,24 @@
 This project is a drop-in auto-configuration for Spring Boot that can automatically configure Mongeez and run migration scripts.
 The auto-configuration makes sure that the migrations happen before any Spring Data Mongo beans are initialized.
 
+## Usage
+ * Make sure Spring Data Mongo is configured properly. 
+ * Add dependencies to Mongeez and the Spring Boot auto-configuration:
+
+<!-- -->
+    <dependency>
+        <groupId>io.github.hzpz.spring.boot</groupId>
+        <artifactId>spring-boot-autoconfigure-mongeez</artifactId>
+        <version>1.0.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.mongeez</groupId>
+        <artifactId>mongeez</artifactId>
+        <version>0.9.4</version>
+    </dependency>
+
+ * [Create a mongeez.xml file that includes all change logs][mongeez.xml] at `db/mongeez.xml`.
+ 
 ## Configuration
 Mongeez can be configured by setting properties with the prefix `mongeez` or by using the `MongeezProperties` bean directly.
 
