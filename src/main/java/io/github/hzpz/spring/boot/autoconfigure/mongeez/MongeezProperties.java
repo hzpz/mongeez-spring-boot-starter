@@ -26,10 +26,6 @@ public class MongeezProperties {
 
     /**
      * Location of migration script.
-     *
-     * @see <a
-     * href="https://github.com/secondmarket/mongeez/wiki/How-to-use-mongeez#create-a-mongeezxml-file-that-include-all-change-logs">
-     * Create a mongeez.xml file that includes all change logs</a>
      */
     private String location = "db/mongeez.xml";
 
@@ -50,7 +46,6 @@ public class MongeezProperties {
 
     /**
      * The database to migrate.
-
      */
     private String database;
 
