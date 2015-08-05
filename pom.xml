@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.hzpz.spring.boot</groupId>
-    <artifactId>spring-boot-autoconfigure-mongeez</artifactId>
+    <artifactId>mongeez-spring-boot-starter</artifactId>
     <version>1.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>Spring Boot AutoConfigure for Mongeez</description>
-    <url>http://github.com/hzpz/spring-boot-autoconfigure-mongeez</url>
+    <url>https://github.com/hzpz/mongeez-spring-boot-starter</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -28,9 +28,9 @@
     </licenses>
 
     <scm>
-        <connection>scm:git:https://github.com/hzpz/spring-boot-autoconfigure-mongeez.git</connection>
-        <developerConnection>scm:git:https://github.com/hzpz/spring-boot-autoconfigure-mongeez.git</developerConnection>
-        <url>http://github.com/hzpz/spring-boot-autoconfigure-mongeez</url>
+        <connection>scm:git:https://github.com/hzpz/mongeez-spring-boot-starter.git</connection>
+        <developerConnection>scm:git:https://github.com/hzpz/mongeez-spring-boot-starter.git</developerConnection>
+        <url>https://github.com/hzpz/mongeez-spring-boot-starter</url>
       <tag>HEAD</tag>
   </scm>
 
