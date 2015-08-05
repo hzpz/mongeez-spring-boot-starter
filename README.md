@@ -1,11 +1,11 @@
-# Spring Boot Auto-configuration for Mongeez
+# Spring Boot Starter for Mongeez
 [Mongeez][mongeez] is a change management tool for Mongo databases. 
-This project is a drop-in auto-configuration for Spring Boot that can automatically configure Mongeez and run migration scripts.
+This project is a [starter][spring-boot-starter] for Spring Boot that can automatically configure Mongeez and run migration scripts.
 The auto-configuration makes sure that the migrations happen before any Spring Data Mongo beans are initialized.
 
 ## Usage
  * Make sure Spring Data Mongo is configured properly. 
- * Add dependencies to Mongeez and the Spring Boot auto-configuration:
+ * Add dependencies to Mongeez and the Spring Boot starter:
 
 <!-- -->
     <dependency>
@@ -38,3 +38,4 @@ the database by setting the property `mongeez.database`.
 
 [mongeez]: http://secondmarket.github.io/mongeez/
 [mongeez.xml]: https://github.com/secondmarket/mongeez/wiki/How-to-use-mongeez#create-a-mongeezxml-file-that-include-all-change-logs
+[spring-boot-starter]: http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-starter-poms
