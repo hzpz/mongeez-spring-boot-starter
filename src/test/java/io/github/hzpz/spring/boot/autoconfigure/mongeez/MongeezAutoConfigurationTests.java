@@ -89,6 +89,16 @@ public class MongeezAutoConfigurationTests {
     }
 
     @Test(expected = BeanCreationException.class)
+    public void shouldFailIfOnlyMongoCredentialsProvided() {
+        String mongoUsername = "foo";
+        String mongoPassword = "bar";
+        EnvironmentTestUtils.addEnvironment(this.context, "spring.data.mongodb.username:" + mongoUsername);
+        EnvironmentTestUtils.addEnvironment(this.context, "spring.data.mongodb.password:" + mongoPassword);
+        registerAndRefresh(DoNotExecuteMongeezPostProcessor.class,
+                MongoAutoConfiguration.class, MongeezAutoConfiguration.class);
+    }
+
+    @Test(expected = BeanCreationException.class)
     public void shouldFailIfLocationDoesNotExist() {
         EnvironmentTestUtils.addEnvironment(this.context, "mongeez.location:does/not/exist");
         registerAndRefresh(DoNotExecuteMongeezPostProcessor.class,
