@@ -18,6 +18,7 @@ import com.mongodb.Mongo;
 import org.mongeez.Mongeez;
 import org.mongeez.MongeezRunner;
 import org.mongeez.MongoAuth;
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -30,7 +31,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -89,8 +89,9 @@ public class MongeezAutoConfiguration {
                 MongoAuth auth = new MongoAuth(mongeezProperties.getUsername(), mongeezProperties.getPassword());
                 mongeez.setAuth(auth);
             } else if (hasCredentials(mongoProperties)) {
-                MongoAuth auth = new MongoAuth(mongoProperties.getUsername(), new String(mongoProperties.getPassword()));
-                mongeez.setAuth(auth);
+                String msg = "Credentials under spring.data.mongodb.* found but no credentials for mongeez.* defined." +
+                        "Please add correct mongeez.password and mongeez.username";
+                throw new BeanCreationException(msg);
             }
             mongeez.setFile(resourceLoader.getResource(mongeezProperties.getLocation()));
             return mongeez;
