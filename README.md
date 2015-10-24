@@ -38,6 +38,11 @@ By default, the auto-configuration will configure Mongeez to use the same databa
 (either by setting the property `spring.data.mongodb.database` or by using the `MongoProperties` bean directly). Override 
 the database by setting the property `mongeez.database`.
 
+### Authentication
+If the database requires authentication you need to set username and password twice, for Spring Data Mongo and for Mongeez
+(either by setting the properties `mongeez.username` and `mongeez.password` or by using the `MongeezProperties` bean directly).
+This is because Spring Data Mongo clears the password from `MongoProperties` after using it.
+
 [mongeez]: http://secondmarket.github.io/mongeez/
 [mongeez.xml]: https://github.com/secondmarket/mongeez/wiki/How-to-use-mongeez#create-a-mongeezxml-file-that-include-all-change-logs
 [spring-boot-starter]: http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-starter-poms
