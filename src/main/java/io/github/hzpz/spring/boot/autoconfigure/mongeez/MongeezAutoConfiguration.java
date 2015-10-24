@@ -116,7 +116,7 @@ public class MongeezAutoConfiguration {
     protected static class MongeezDataMongoDependencyConfiguration {
 
         @Bean
-        public BeanFactoryPostProcessor mongoDbFactoryDependsOnPostProcessor() {
+        public static BeanFactoryPostProcessor mongoDbFactoryDependsOnPostProcessor() {
             return new MongoDbFactoryDependsOnPostProcessor("mongeez");
         }
 
