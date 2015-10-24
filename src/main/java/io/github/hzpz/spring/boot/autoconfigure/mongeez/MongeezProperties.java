@@ -14,6 +14,7 @@
 
 package io.github.hzpz.spring.boot.autoconfigure.mongeez;
 
+import org.mongeez.MongoAuth;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -42,7 +43,7 @@ public class MongeezProperties {
     /**
      * Login password of the database to migrate.
      */
-    private String password;
+    private char[] password;
 
     /**
      * The database to migrate.
@@ -73,11 +74,11 @@ public class MongeezProperties {
         this.username = username;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
         this.password = password;
     }
 
@@ -87,6 +88,27 @@ public class MongeezProperties {
 
     public void setDatabase(String database) {
         this.database = database;
+    }
+
+    public boolean hasCredentials() {
+        return username != null && password != null;
+    }
+
+    public void clearPassword() {
+        if (this.password == null) {
+            return;
+        }
+        for (int i = 0; i < this.password.length; i++) {
+            this.password[i] = 0;
+        }
+    }
+
+    public MongoAuth createMongoAuth() {
+        try {
+            return new MongoAuth(username, new String(password));
+        } finally {
+            clearPassword();
+        }
     }
 
 }

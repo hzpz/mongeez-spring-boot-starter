@@ -85,8 +85,8 @@ public class MongeezAutoConfiguration {
             } else {
                 mongeez.setDbName(mongoProperties.getDatabase());
             }
-            if (hasCredentials(mongeezProperties)) {
-                MongoAuth auth = new MongoAuth(mongeezProperties.getUsername(), mongeezProperties.getPassword());
+            if (mongeezProperties.hasCredentials()) {
+                MongoAuth auth = mongeezProperties.createMongoAuth();
                 mongeez.setAuth(auth);
             } else if (hasCredentials(mongoProperties)) {
                 String msg = "Credentials under spring.data.mongodb.* found but no credentials for mongeez.* defined." +
@@ -95,10 +95,6 @@ public class MongeezAutoConfiguration {
             }
             mongeez.setFile(resourceLoader.getResource(mongeezProperties.getLocation()));
             return mongeez;
-        }
-
-        private boolean hasCredentials(MongeezProperties properties) {
-            return properties.getUsername() != null && properties.getPassword() != null;
         }
 
         private boolean hasCredentials(MongoProperties properties) {
