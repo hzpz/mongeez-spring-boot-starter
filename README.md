@@ -1,4 +1,4 @@
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.hzpz.spring.boot/mongeez-spring-boot-starter.svg)](http://search.maven.org/#artifactdetails|io.github.hzpz.spring.boot|mongeez-spring-boot-starter|1.0.0|jar)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.hzpz.spring.boot/mongeez-spring-boot-starter.svg)](http://search.maven.org/#artifactdetails|io.github.hzpz.spring.boot|mongeez-spring-boot-starter|1.0.1|jar)
 
 # Spring Boot Starter for Mongeez
 [Mongeez][mongeez] is a change management tool for Mongo databases. 
@@ -13,7 +13,7 @@ The auto-configuration makes sure that the migrations happen before any Spring D
     <dependency>
         <groupId>io.github.hzpz.spring.boot</groupId>
         <artifactId>mongeez-spring-boot-starter</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </dependency>
     <dependency>
         <groupId>org.mongeez</groupId>
