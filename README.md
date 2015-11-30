@@ -1,6 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.hzpz.spring.boot/mongeez-spring-boot-starter.svg)](http://search.maven.org/#artifactdetails|io.github.hzpz.spring.boot|mongeez-spring-boot-starter|1.0.1|jar)
 
-> Currently NOT compatible with Spring Boot > 1.3.0!
+> Currently NOT compatible with Spring Boot >= 1.3.0!
 
 # Spring Boot Starter for Mongeez
 [Mongeez][mongeez] is a change management tool for Mongo databases. 
