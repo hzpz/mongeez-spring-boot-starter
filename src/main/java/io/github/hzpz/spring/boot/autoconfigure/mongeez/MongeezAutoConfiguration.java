@@ -85,7 +85,7 @@ public class MongeezAutoConfiguration {
             if (StringUtils.hasText(mongeezProperties.getDatabase())) {
                 mongeez.setDbName(mongeezProperties.getDatabase());
             } else {
-                mongeez.setDbName(mongoProperties.getDatabase());
+                mongeez.setDbName(mongoProperties.getMongoClientDatabase());
             }
             if (mongeezProperties.hasCredentials()) {
                 MongoAuth auth = mongeezProperties.createMongoAuth();
