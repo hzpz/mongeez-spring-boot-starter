@@ -31,7 +31,7 @@ To disable the auto-configuration of Mongeez completely, set the property `monge
 
 ### Location of migration script
 The default expected location of the migration script (see [Create a mongeez.xml file that includes all change logs][mongeez.xml])
-is `db/mongeez.xml`. The simplest way to override the location is by the setting the property `mongeez.location`.
+is `db/mongeez.xml`. The simplest way to override the location is by setting the property `mongeez.location`.
 
 ### Database
 By default, the auto-configuration will configure Mongeez to use the same database that is configured for Spring Data Mongo
