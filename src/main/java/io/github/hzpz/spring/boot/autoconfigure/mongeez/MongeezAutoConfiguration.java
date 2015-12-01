@@ -29,7 +29,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
-import org.springframework.boot.autoconfigure.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -55,7 +54,10 @@ import javax.annotation.PostConstruct;
 @ConditionalOnProperty(prefix = "mongeez", name = "enabled", matchIfMissing = true)
 @EnableConfigurationProperties({MongoProperties.class, MongeezProperties.class})
 @AutoConfigureAfter(MongoAutoConfiguration.class)
-@AutoConfigureBefore(MongoDataAutoConfiguration.class)
+@AutoConfigureBefore(name = {
+        "org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration", // Spring Boot >= 1.3.0
+        "org.springframework.boot.autoconfigure.mongo.MongoDataAutoConfiguration" // Spring Boot < 1.3.0
+})
 public class MongeezAutoConfiguration {
 
     @Configuration
