@@ -51,7 +51,7 @@ public class MongeezProperties {
     private String database;
 
     public String getLocation() {
-        return location;
+        return this.location;
     }
 
     public void setLocation(String location) {
@@ -59,7 +59,7 @@ public class MongeezProperties {
     }
 
     public boolean isEnabled() {
-        return enabled;
+        return this.enabled;
     }
 
     public void setEnabled(boolean enabled) {
@@ -67,7 +67,7 @@ public class MongeezProperties {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -75,7 +75,7 @@ public class MongeezProperties {
     }
 
     public char[] getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(char[] password) {
@@ -83,7 +83,7 @@ public class MongeezProperties {
     }
 
     public String getDatabase() {
-        return database;
+        return this.database;
     }
 
     public void setDatabase(String database) {
@@ -91,7 +91,7 @@ public class MongeezProperties {
     }
 
     public boolean hasCredentials() {
-        return username != null && password != null;
+        return this.username != null && this.password != null;
     }
 
     public void clearPassword() {
@@ -105,7 +105,7 @@ public class MongeezProperties {
 
     public MongoAuth createMongoAuth() {
         try {
-            return new MongoAuth(username, new String(password));
+            return new MongoAuth(this.username, new String(this.password));
         } finally {
             clearPassword();
         }

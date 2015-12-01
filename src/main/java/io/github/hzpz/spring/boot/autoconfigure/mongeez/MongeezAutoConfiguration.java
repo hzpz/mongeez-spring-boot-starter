@@ -73,29 +73,29 @@ public class MongeezAutoConfiguration {
 
         @PostConstruct
         public void checkLocationExists() {
-            Resource resource = resourceLoader.getResource(mongeezProperties.getLocation());
+            Resource resource = this.resourceLoader.getResource(this.mongeezProperties.getLocation());
             Assert.state(resource.exists(),
-                    "Cannot find Mongeez migration script at '" + mongeezProperties.getLocation() + "'");
+                    "Cannot find Mongeez migration script at '" + this.mongeezProperties.getLocation() + "'");
         }
 
         @Bean(initMethod = "process")
         public Mongeez mongeez(MongoProperties mongoProperties, Mongo mongo) {
             Mongeez mongeez = new Mongeez();
             mongeez.setMongo(mongo);
-            if (StringUtils.hasText(mongeezProperties.getDatabase())) {
-                mongeez.setDbName(mongeezProperties.getDatabase());
+            if (StringUtils.hasText(this.mongeezProperties.getDatabase())) {
+                mongeez.setDbName(this.mongeezProperties.getDatabase());
             } else {
                 mongeez.setDbName(mongoProperties.getMongoClientDatabase());
             }
-            if (mongeezProperties.hasCredentials()) {
-                MongoAuth auth = mongeezProperties.createMongoAuth();
+            if (this.mongeezProperties.hasCredentials()) {
+                MongoAuth auth = this.mongeezProperties.createMongoAuth();
                 mongeez.setAuth(auth);
             } else if (hasCredentials(mongoProperties)) {
                 String msg = "Credentials under spring.data.mongodb.* found but no credentials for mongeez.* defined." +
                         "Please add correct mongeez.password and mongeez.username";
                 throw new BeanCreationException(msg);
             }
-            mongeez.setFile(resourceLoader.getResource(mongeezProperties.getLocation()));
+            mongeez.setFile(this.resourceLoader.getResource(this.mongeezProperties.getLocation()));
             return mongeez;
         }
 
