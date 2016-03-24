@@ -129,9 +129,7 @@ public class MongeezProperties {
         }
     }
 
-    /**
-     * Work around breaking change introduced in Mongeez 0.9.6
-     */
+    // Work around breaking change introduced in Mongeez 0.9.6.
     private MongoAuth instantiateMongoAuth(String username, String password, String authDb) {
         Constructor<?> constructor = ReflectionUtils.findConstructor(MongoAuth.class, username, password, authDb);
         if (constructor != null) {
