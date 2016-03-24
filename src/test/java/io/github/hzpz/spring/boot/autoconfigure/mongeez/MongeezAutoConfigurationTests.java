@@ -16,7 +16,6 @@ package io.github.hzpz.spring.boot.autoconfigure.mongeez;
 
 import com.mongodb.Mongo;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.mongeez.Mongeez;
 import org.mongeez.MongoAuth;
@@ -33,10 +32,6 @@ import static org.junit.Assume.assumeThat;
 public class MongeezAutoConfigurationTests {
 
     private AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-
-    @Before
-    public void init() {
-    }
 
     @After
     public void close() {

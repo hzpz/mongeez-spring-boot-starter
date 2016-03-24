@@ -123,7 +123,7 @@ public class MongeezProperties {
     public MongoAuth createMongoAuth() {
         String authDb = this.authenticationDatabase == null ? this.database : this.authenticationDatabase;
         try {
-            return instantiateMongoAuth(this.username, new String(this.password), authDb);
+            return instantiateMongoAuth(this.username, String.valueOf(this.password), authDb);
         } finally {
             clearPassword();
         }
