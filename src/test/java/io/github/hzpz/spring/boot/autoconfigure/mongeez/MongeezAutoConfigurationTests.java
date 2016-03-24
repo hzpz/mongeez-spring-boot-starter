@@ -19,6 +19,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mongeez.Mongeez;
+import org.mongeez.MongoAuth;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.test.EnvironmentTestUtils;
@@ -86,6 +87,34 @@ public class MongeezAutoConfigurationTests {
         Mongeez mongeez = this.context.getBean(Mongeez.class);
         Object mongeezActualDatabase = ReflectionTestUtils.getField(mongeez, "dbName");
         assertThat(mongeezActualDatabase.toString(), equalTo(mongeezOverrideDatabase));
+    }
+
+    @Test
+    public void shouldUseAuthenticationDatabaseFromMongoProperties() {
+        String database = "foo";
+        EnvironmentTestUtils.addEnvironment(this.context, "spring.data.mongodb.authenticationDatabase:" + database);
+        EnvironmentTestUtils.addEnvironment(this.context, "mongeez.username:user");
+        EnvironmentTestUtils.addEnvironment(this.context, "mongeez.password:pass");
+        registerAndRefresh(DoNotExecuteMongeezPostProcessor.class,
+                MongoAutoConfiguration.class, MongeezAutoConfiguration.class);
+        Mongeez mongeez = this.context.getBean(Mongeez.class);
+        String authDb = ((MongoAuth) ReflectionTestUtils.getField(mongeez, "auth")).getAuthDb();
+        assertThat(authDb, equalTo(database));
+    }
+
+    @Test
+    public void shouldUseAuthenticationDatabaseOverrideFromMongeezProperties() {
+        String database = "foo";
+        String mongeezOverrideDatabase = "bar";
+        EnvironmentTestUtils.addEnvironment(this.context, "spring.data.mongodb.authenticationDatabase:" + database);
+        EnvironmentTestUtils.addEnvironment(this.context, "mongeez.authenticationDatabase:" + mongeezOverrideDatabase);
+        EnvironmentTestUtils.addEnvironment(this.context, "mongeez.username:user");
+        EnvironmentTestUtils.addEnvironment(this.context, "mongeez.password:pass");
+        registerAndRefresh(DoNotExecuteMongeezPostProcessor.class,
+                MongoAutoConfiguration.class, MongeezAutoConfiguration.class);
+        Mongeez mongeez = this.context.getBean(Mongeez.class);
+        String authDb = ((MongoAuth) ReflectionTestUtils.getField(mongeez, "auth")).getAuthDb();
+        assertThat(authDb, equalTo(mongeezOverrideDatabase));
     }
 
     @Test(expected = BeanCreationException.class)

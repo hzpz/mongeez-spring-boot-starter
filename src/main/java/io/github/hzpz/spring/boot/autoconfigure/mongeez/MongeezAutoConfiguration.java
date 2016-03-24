@@ -82,21 +82,31 @@ public class MongeezAutoConfiguration {
         public Mongeez mongeez(MongoProperties mongoProperties, Mongo mongo) {
             Mongeez mongeez = new Mongeez();
             mongeez.setMongo(mongo);
-            if (StringUtils.hasText(this.mongeezProperties.getDatabase())) {
-                mongeez.setDbName(this.mongeezProperties.getDatabase());
-            } else {
-                mongeez.setDbName(mongoProperties.getMongoClientDatabase());
-            }
+
+            copyMissingProperties(mongoProperties, this.mongeezProperties);
+
+            mongeez.setDbName(this.mongeezProperties.getDatabase());
             if (this.mongeezProperties.hasCredentials()) {
                 MongoAuth auth = this.mongeezProperties.createMongoAuth();
                 mongeez.setAuth(auth);
-            } else if (hasCredentials(mongoProperties)) {
-                String msg = "Credentials under spring.data.mongodb.* found but no credentials for mongeez.* defined." +
-                        "Please add correct mongeez.password and mongeez.username";
-                throw new BeanCreationException(msg);
             }
             mongeez.setFile(this.resourceLoader.getResource(this.mongeezProperties.getLocation()));
             return mongeez;
+        }
+
+        private void copyMissingProperties(MongoProperties mongoProperties, MongeezProperties mongeezProperties) {
+            if (StringUtils.isEmpty(mongeezProperties.getDatabase())) {
+                mongeezProperties.setDatabase(mongoProperties.getMongoClientDatabase());
+            }
+            if (StringUtils.isEmpty(mongeezProperties.getAuthenticationDatabase())) {
+                mongeezProperties.setAuthenticationDatabase(mongoProperties.getAuthenticationDatabase());
+            }
+            if (!mongeezProperties.hasCredentials() && hasCredentials(mongoProperties)) {
+                // cannot copy credentials because Spring Data MongoDB clears the password after using it
+                String msg = "Found credentials for Spring Data MongoDB but no credentials for Mongeez. " +
+                        "You need to define both for authentication to work.";
+                throw new BeanCreationException(msg);
+            }
         }
 
         private boolean hasCredentials(MongoProperties properties) {

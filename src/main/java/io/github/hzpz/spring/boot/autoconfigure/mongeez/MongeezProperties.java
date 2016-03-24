@@ -15,7 +15,11 @@
 package io.github.hzpz.spring.boot.autoconfigure.mongeez;
 
 import org.mongeez.MongoAuth;
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.data.util.ReflectionUtils;
+
+import java.lang.reflect.Constructor;
 
 /**
  * Configuration properties for Mongeez.
@@ -49,6 +53,11 @@ public class MongeezProperties {
      * The database to migrate.
      */
     private String database;
+
+    /**
+     * Authentication database name.
+     */
+    private String authenticationDatabase;
 
     public String getLocation() {
         return this.location;
@@ -90,6 +99,14 @@ public class MongeezProperties {
         this.database = database;
     }
 
+    public String getAuthenticationDatabase() {
+        return this.authenticationDatabase;
+    }
+
+    public void setAuthenticationDatabase(String authenticationDatabase) {
+        this.authenticationDatabase = authenticationDatabase;
+    }
+
     public boolean hasCredentials() {
         return this.username != null && this.password != null;
     }
@@ -104,11 +121,30 @@ public class MongeezProperties {
     }
 
     public MongoAuth createMongoAuth() {
+        String authDb = this.authenticationDatabase == null ? this.database : this.authenticationDatabase;
         try {
-            return new MongoAuth(this.username, new String(this.password));
+            return instantiateMongoAuth(this.username, new String(this.password), authDb);
         } finally {
             clearPassword();
         }
+    }
+
+    /**
+     * Work around breaking change introduced in Mongeez 0.9.6
+     */
+    private MongoAuth instantiateMongoAuth(String username, String password, String authDb) {
+        Constructor<?> constructor = ReflectionUtils.findConstructor(MongoAuth.class, username, password, authDb);
+        if (constructor != null) {
+            return (MongoAuth) BeanUtils.instantiateClass(constructor, username, password, authDb);
+        }
+
+        constructor = ReflectionUtils.findConstructor(MongoAuth.class, username, password);
+        if (constructor != null) {
+            return (MongoAuth) BeanUtils.instantiateClass(constructor, username, password);
+        }
+
+        throw new IllegalStateException("No suitable constructor found to instantiate MongoAuth. " +
+                "Are you using a supported Mongeez version?");
     }
 
 }
