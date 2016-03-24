@@ -1,5 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.hzpz.spring.boot/mongeez-spring-boot-starter.svg)](http://search.maven.org/#artifactdetails|io.github.hzpz.spring.boot|mongeez-spring-boot-starter|1.1.0|jar)
 [![Build Status](https://travis-ci.org/hzpz/mongeez-spring-boot-starter.svg?branch=master)](https://travis-ci.org/hzpz/mongeez-spring-boot-starter)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/e518c6a5031143fda2a6348fb90bfe55)](https://www.codacy.com/app/mailantimo/mongeez-spring-boot-starter)
 
 # Spring Boot Starter for Mongeez
 [Mongeez][mongeez] is a change management tool for Mongo databases. 
