@@ -1,4 +1,5 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.hzpz.spring.boot/mongeez-spring-boot-starter.svg)](http://search.maven.org/#artifactdetails|io.github.hzpz.spring.boot|mongeez-spring-boot-starter|1.1.0|jar)
+[![Build Status](https://travis-ci.org/hzpz/mongeez-spring-boot-starter.svg?branch=master)](https://travis-ci.org/hzpz/mongeez-spring-boot-starter)
 
 # Spring Boot Starter for Mongeez
 [Mongeez][mongeez] is a change management tool for Mongo databases. 
@@ -43,6 +44,6 @@ If the database requires authentication you need to set username and password tw
 (either by setting the properties `mongeez.username` and `mongeez.password` or by using the `MongeezProperties` bean directly).
 This is because Spring Data Mongo clears the password from `MongoProperties` after using it.
 
-[mongeez]: http://secondmarket.github.io/mongeez/
-[mongeez.xml]: https://github.com/secondmarket/mongeez/wiki/How-to-use-mongeez#create-a-mongeezxml-file-that-include-all-change-logs
+[mongeez]: https://github.com/mongeez/mongeez
+[mongeez.xml]: https://github.com/mongeez/mongeez/wiki/How-to-use-mongeez#create-a-mongeezxml-file-that-include-all-change-logs
 [spring-boot-starter]: http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-starter-poms
