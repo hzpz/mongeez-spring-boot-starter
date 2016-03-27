@@ -1,4 +1,4 @@
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.hzpz.spring.boot/mongeez-spring-boot-starter.svg)](http://search.maven.org/#artifactdetails|io.github.hzpz.spring.boot|mongeez-spring-boot-starter|1.1.0|jar)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.hzpz.spring.boot/mongeez-spring-boot-starter.svg)
 [![Build Status](https://travis-ci.org/hzpz/mongeez-spring-boot-starter.svg?branch=master)](https://travis-ci.org/hzpz/mongeez-spring-boot-starter)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/e518c6a5031143fda2a6348fb90bfe55)](https://www.codacy.com/app/mailantimo/mongeez-spring-boot-starter)
 
@@ -9,18 +9,13 @@ The auto-configuration makes sure that the migrations happen before any Spring D
 
 ## Usage
  * Make sure Spring Data Mongo is configured properly. 
- * Add dependencies to Mongeez and the Spring Boot starter:
+ * Add dependency to the Mongeez Spring Boot starter:
 
 <!-- -->
     <dependency>
         <groupId>io.github.hzpz.spring.boot</groupId>
         <artifactId>mongeez-spring-boot-starter</artifactId>
-        <version>1.1.0</version>
-    </dependency>
-    <dependency>
-        <groupId>org.mongeez</groupId>
-        <artifactId>mongeez</artifactId>
-        <version>0.9.4</version>
+        <version>1.2.0</version>
     </dependency>
 
  * [Create a mongeez.xml file that includes all change logs][mongeez.xml] at `db/mongeez.xml`.
