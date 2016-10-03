@@ -21,7 +21,7 @@ import org.mongeez.Mongeez;
 import org.mongeez.MongoAuth;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
-import org.springframework.boot.test.EnvironmentTestUtils;
+import org.springframework.boot.test.util.EnvironmentTestUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.util.ReflectionTestUtils;
 
