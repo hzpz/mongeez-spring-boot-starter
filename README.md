@@ -15,7 +15,7 @@ The auto-configuration makes sure that the migrations happen before any Spring D
     <dependency>
         <groupId>io.github.hzpz.spring.boot</groupId>
         <artifactId>mongeez-spring-boot-starter</artifactId>
-        <version>1.2.0</version>
+        <version>1.3.0</version>
     </dependency>
 
  * [Create a mongeez.xml file that includes all change logs][mongeez.xml] at `db/mongeez.xml`.
