@@ -20,13 +20,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.data.util.ReflectionUtils;
 
 import java.lang.reflect.Constructor;
+import java.util.Optional;
 
 /**
  * Configuration properties for Mongeez.
  *
  * @author Timo Kockert
  */
-@ConfigurationProperties(prefix = "mongeez", ignoreUnknownFields = true)
+@ConfigurationProperties(prefix = "mongeez")
 public class MongeezProperties {
 
     /**
@@ -131,14 +132,14 @@ public class MongeezProperties {
 
     // Work around breaking change introduced in Mongeez 0.9.6.
     private MongoAuth instantiateMongoAuth(String username, String password, String authDb) {
-        Constructor<?> constructor = ReflectionUtils.findConstructor(MongoAuth.class, username, password, authDb);
-        if (constructor != null) {
-            return (MongoAuth) BeanUtils.instantiateClass(constructor, username, password, authDb);
+        Optional<Constructor<?>> constructor = ReflectionUtils.findConstructor(MongoAuth.class, username, password, authDb);
+        if (constructor.isPresent()) {
+            return (MongoAuth) BeanUtils.instantiateClass(constructor.get(), username, password, authDb);
         }
 
         constructor = ReflectionUtils.findConstructor(MongoAuth.class, username, password);
-        if (constructor != null) {
-            return (MongoAuth) BeanUtils.instantiateClass(constructor, username, password);
+        if (constructor.isPresent()) {
+            return (MongoAuth) BeanUtils.instantiateClass(constructor.get(), username, password);
         }
 
         throw new IllegalStateException("No suitable constructor found to instantiate MongoAuth. " +
